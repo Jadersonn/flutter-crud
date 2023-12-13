@@ -24,8 +24,8 @@ class Users with ChangeNotifier {
     return _items.values.elementAt((i));
   }
 
-  Future<void> put(User user) async {
-    if (user.id.trim().isNotEmpty && _items.containsKey(user.id)) 
+  Future<void> put(User user) async{
+    if (user.id.trim().isNotEmpty && _items.containsKey(user.id)){
       await http.patch(
         Uri.parse("$_baseUrl/users/${user.id}.json"),
         body: json.encode({
@@ -41,7 +41,7 @@ class Users with ChangeNotifier {
               name: user.name,
               email: user.email,
               avatarUrl: user.avatarUrl));
-    } else {
+    }else{
       final response = await http.post(
         Uri.parse("$_baseUrl/users.json"),
         body: json.encode({
